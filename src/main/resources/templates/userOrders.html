@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User balloon orders</title>
+</head>
+<body>
+    <table>
+        <thead>
+        <tr>
+            <th>Color</th>
+            <th>Size</th>
+            <th>Client Name</th>
+            <th>Client Address</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="order : ${orders}">
+            <td th:text="${order.getBalloonColor()}"></td>
+            <td th:text="${order.getBalloonSize()}"></td>
+            <td th:text="${order.getClientName()}"></td>
+            <td th:text="${order.getClientAddress()}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <a th:href="@{'/balloons'}">Make another order</a>
+    <a th:href="@{'/logout'}">Log out</a>
+</body>
+</html>

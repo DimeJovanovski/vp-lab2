@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add/modify ballooon page</title>
+</head>
+<body>
+<form action="/balloons/add" method="post">
+    <label>Name</label>
+    <input type="text"
+           id="name"
+           name="name"
+           th:value="(${balloon}!=null ? ${balloon.getName()} : '')"
+           required>
+    </input></br>
+
+    <label>Description</label>
+    <input type="text"
+           id="description"
+           name="description"
+           th:value="(${balloon}!=null ? ${balloon.getDescription()} : '')"
+           required>
+    </input></br>
+
+    <label>Manufacturer</label>
+    <select name="manufacturer">
+        <option th:if="(${balloon}!=null)"
+                th:selected="( ${ balloon.getManufacturer()!=null && balloon.getManufacturer().getId()==manufacturer.getId() } )"
+                th:each="manufacturer : ${manufacturers}"
+                th:text="${manufacturer.getName()}"
+                th:value="${manufacturer.getId()}">
+        </option>
+        <option th:if="(${balloon}==null)"
+                th:each="manufacturer : ${manufacturers}"
+                th:text="${manufacturer.getName()}"
+                th:value="${manufacturer.getId()}">
+        </option>
+    </select>
+    <button type="submit">Submit</button>
+    <a href="/balloons">Back</a>
+</form>
+</body>
+</html>
